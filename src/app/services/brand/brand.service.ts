@@ -1,0 +1,18 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BrandResponseModel } from 'src/app/models/brandResponseModel';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BrandService {
+
+  private apiUrl = 'https://localhost:44378/api/Brands/getall';
+
+  constructor(private httpClient: HttpClient) {}
+
+  getBrands(): Observable<BrandResponseModel> {
+    return this.httpClient.get<BrandResponseModel>(this.apiUrl); //Buna subscribe olmak isteyen component aslında. Servisin görüntüsü bu olması gerekiyor.
+  }
+}
