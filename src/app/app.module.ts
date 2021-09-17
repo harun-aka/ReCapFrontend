@@ -10,7 +10,6 @@ import { CarComponent } from './components/car/car.component';
 import { ColorComponent } from './components/color/color.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { RentalComponent } from './components/rental/rental.component';
-import { CarDetailDtoComponent } from './components/car-detail-dto/car-detail-dto.component';
 import { RentalDetailDtoComponent } from './components/rental-detail-dto/rental-detail-dto.component';
 import { CustomerDetailDtoComponent } from './components/customer-detail-dto/customer-detail-dto.component';
 
@@ -23,7 +22,6 @@ import { CustomerDetailDtoComponent } from './components/customer-detail-dto/cus
     ColorComponent,
     CustomerComponent,
     RentalComponent,
-    CarDetailDtoComponent,
     RentalDetailDtoComponent,
     CustomerDetailDtoComponent
   ],

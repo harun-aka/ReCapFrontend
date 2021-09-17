@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CustomerDetailDtoResponseModel } from 'src/app/models/customerDetailDtoResponseModel';
+import { CustomerDetailDto } from 'src/app/models/customerDetailDto';
+import { ListResponseModel } from 'src/app/models/listResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class CustomerDetailDtoService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getCustomersWithDetails(): Observable<CustomerDetailDtoResponseModel> {
-    return this.httpClient.get<CustomerDetailDtoResponseModel>(this.apiUrl); //Buna subscribe olmak isteyen component aslında. Servisin görüntüsü bu olması gerekiyor.
+  getCustomersWithDetails(): Observable<ListResponseModel<CustomerDetailDto>> {
+    return this.httpClient.get<ListResponseModel<CustomerDetailDto>>(this.apiUrl); //Buna subscribe olmak isteyen component aslında. Servisin görüntüsü bu olması gerekiyor.
   }
 }
 
