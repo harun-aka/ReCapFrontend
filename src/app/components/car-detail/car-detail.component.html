@@ -1,0 +1,16 @@
+<div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<ul class="list-group">
+  <li>Tüm Markalar</li>
+  <li>12111</li>
+
+  <li>{{ carDetail?.brandName }}</li>
+  <li>{{ carDetail?.colorName }}</li>
+  <li>{{ carDetail?.carName }}</li>
+  <li><button routerLink="/rental/{{ carDetail?.carId }}" type="button" class="btn btn-primary btn-xs">
+    Kirala
+  </button></li>
+</ul>
+

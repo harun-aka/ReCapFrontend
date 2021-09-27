@@ -1,22 +1,86 @@
-<div *ngIf = "dataLoaded == false" class="spinner-border text-info" role="status">
-    <span class="visually-hidden">Loading...</span>
-  </div> 
+<div *ngIf="dataLoaded == false" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
 
-<table *ngIf = "dataLoaded == true" class="table table-bordered">
+<div class="mb-3 row">
+  <div class="col-md-6">
+    <label for="filterText" class="form-label">Ürün Ara</label>
+    <input
+      type="text"
+      [(ngModel)]="filterText"
+      class="form-control"
+      id="filterText"
+      placeholder="Arama İfadesi Giriniz."
+    />
+  </div>
+  <div class="col-md-2">
+
+    <label for="brandId">Choose a brand:</label>
+
+    <select name="brandToFilter" [(ngModel)]="brandToFilter">
+      <option ng-selected="brandToFilter.id == brand.id"
+        [ngValue]="brand"
+        *ngFor="let brand of brands" 
+        >{{brand.brandName}}</option>
+    </select>
+     <span *ngIf="brandToFilter">{{brandToFilter.brandName}}</span>
+
+  </div>
+  <div class="col-md-2">
+    <label for="colorId">Choose a color:</label>
+
+    <select name="colorToFilter" [(ngModel)]="colorToFilter">
+      <option ng-selected="colorToFilter.id == color.id"
+        [ngValue]="color"
+        *ngFor="let color of colors" 
+        >{{color.colorName}}</option>
+    </select>
+    <span *ngIf="colorToFilter">{{colorToFilter.colorName}}</span>
+
+  </div>
+  <div class="col-md-2">
+    <button
+      (click)="getCarsByFilterButton();"
+      type="button"
+      class="btn btn-primary btn-xs"
+    >
+      Filtrele
+    </button>
+  </div>
+</div>
+
+<div *ngIf="filterText.length > 0" class="alert alert-danger">
+  {{ filterText }} aradınız.
+</div>
+
+<table *ngIf="dataLoaded == true" class="table table-bordered">
+  <thead>
     <tr>
-        <th>Car Name</th>
-        <th>Brand Name</th>
-        <th>Color Name</th>
-        <th>Model Year</th>
-        <th>Daily Price</th>
-        <th>Description</th>
+      <th>Car Name</th>
+      <th>Brand Name</th>
+      <th>Color Name</th>
+      <th>Model Year</th>
+      <th>Daily Price</th>
+      <th>Description</th>
     </tr>
-    <tr *ngFor="let car of cars">
-        <td>{{car.carName}}</td>
-        <td>{{car.brandName}}</td>
-        <td>{{car.colorName}}</td>
-        <td>{{car.modelYear}}</td>
-        <td>{{car.dailyPrice}}</td>
-        <td>{{car.description}}</td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars | filterPipeCar: filterText">
+      <td>{{ car.carName }}</td>
+      <td>{{ car.brandName }}</td>
+      <td>{{ car.colorName }}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice }}</td>
+      <td>{{ car.description }}</td>
+      <td>
+        <button
+          routerLink="car/detail/{{ car.carId }}"
+          type="button"
+          class="btn btn-primary btn-xs"
+        >
+          Detay
+        </button>
+      </td>
     </tr>
+  </tbody>
 </table>

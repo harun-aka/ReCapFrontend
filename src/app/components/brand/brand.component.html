@@ -1,14 +1,12 @@
 <ul class="list-group">
     <li [class]="getAllBrandClass()" 
     (click)="setCurrentBrandNull();"
-     routerLink = "cars">Tüm Markalar</li>
+     routerLink = "">Tüm Markalar</li>
     <li (click)="setCurrentBrand(brand);" 
-    routerLink="cars/getcarsbyfilters/{{brand.id}}"
-    *ngFor="let brand of brands" 
+    routerLink="/car/brand/{{brand.id}}"
+    *ngFor="let brand of brands " 
     [class]="getCurrentBrandClass(brand)">
     {{brand.brandName}}</li>
 
   </ul>
 
-  <!-- CurrentCategory null değilse çalışır -->
-  <h5 *ngIf="currentBrand">{{currentBrand.brandName}}</h5> 

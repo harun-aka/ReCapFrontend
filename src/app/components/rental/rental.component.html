@@ -1,1 +1,35 @@
-<p>rental works!</p>
+<div *ngIf="result != null">
+  {{ result }}
+  <br /><br />
+  <div *ngIf="resultMessage">
+    {{ resultMessage }}
+  </div>
+
+</div>
+
+<div class="row">
+<div class="col-md-6">
+  <label for="picker"> rentDate</label>
+  <input [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="rentDate">>
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker ></mat-datepicker>
+</div>
+
+<div class="col-md-6">
+  <label for="pickerreturnDate"> returnDate</label>
+  <input [matDatepicker]="pickerreturnDate" placeholder="Choose a date" [(ngModel)]="returnDate">>
+  <mat-datepicker-toggle matSuffix [for]="pickerreturnDate"></mat-datepicker-toggle>
+  <mat-datepicker #pickerreturnDate ></mat-datepicker>
+</div>
+</div>
+  <div>
+    <button (click)="rentCar()" type="button" class="btn btn-primary btn-xs">
+        Kirala
+      </button>
+  </div>
+  <div *ngIf="resultMessage">
+    <button (click)="checkout()" type="button" class="btn btn-primary btn-xs">
+      Öde
+    </button>
+  </div>
+

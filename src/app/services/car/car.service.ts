@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Car } from 'src/app/models/car';
 import { CarDetailDto } from 'src/app/models/carDetailDto';
+import { CarImageDetailDto } from 'src/app/models/carImageDetailDto';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { SingleResponseModel } from 'src/app/models/singleResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +37,12 @@ export class CarService {
   }
 
   getCarsByBrandAndColor(brandId:number, colorId:number): Observable<ListResponseModel<CarDetailDto>> {
-    let newPath = this.apiUrl + 'cars/getcardetails?brandId=' + brandId + '&' + 'colorId' + colorId;
+    let newPath = this.apiUrl + 'cars/getcardetails?brandId=' + brandId + '&' + 'colorId=' + colorId;
     return this.httpClient.get<ListResponseModel<CarDetailDto>>(newPath); //Buna subscribe olmak isteyen component aslında. Servisin görüntüsü bu olması gerekiyor.
+  }
+
+  getCarDetails(carId:number): Observable<SingleResponseModel<CarImageDetailDto>>{
+    let newPath = this.apiUrl + 'cars/getcarimagedetails?carId=' + carId;
+    return this.httpClient.get<SingleResponseModel<CarImageDetailDto>>(newPath);
   }
 }
